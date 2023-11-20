@@ -14,8 +14,8 @@ import 'package:injectable/injectable.dart' as _i2;
 import '../data/datasource/api_datasource.dart' as _i4;
 import '../data/datasource/datasource.dart' as _i7;
 import '../data/repository/repository_impl.dart' as _i6;
+import '../domain/domain.dart' as _i5;
 import '../domain/mappers/user_mapper.dart' as _i3;
-import '../domain/repository/feedback_repository.dart' as _i5;
 import 'injection.dart' as _i8;
 
 extension GetItInjectableX on _i1.GetIt {
@@ -39,7 +39,7 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i4.ApiDatasource(baseUrl: gh<Uri>(instanceName: 'baseUrl')));
     gh.factory<_i5.FeedbackRepository>(() => _i6.FeedbackRepositoryImpl(
           gh<_i7.ApiDatasource>(),
-          gh<_i3.UserMapper>(),
+          gh<_i5.UserMapper>(),
         ));
     return this;
   }
