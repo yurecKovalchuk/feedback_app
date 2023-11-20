@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
+import 'bootstrap.dart';
 import 'package:feedback_app/app/app.dart';
 
-void main() {
-  runApp(Application());
+void main() async {
+  await bootstrap(() async => Application());
 }
