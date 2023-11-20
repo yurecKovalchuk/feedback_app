@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:go_router/go_router.dart';
 
 import 'package:feedback_app/app/app.dart';
 
 class Application extends StatelessWidget {
-  Application({super.key});
+  Application({
+    super.key,
+    required this.serviceLocator,
+  });
 
   late final GoRouter _router = _buildRouting();
+  final GetIt serviceLocator;
 
   @override
   Widget build(BuildContext context) {
