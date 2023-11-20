@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
@@ -38,9 +37,14 @@ class ApiDatasource {
 
   Uri _endpoint(String path) => baseUrl.replace(path: baseUrl.path + path);
 
-  Future<UserDTO> addFeedback() async {
+  Future<UserDTO> addFeedback(UserDTO userDTO) async {
     final path = _endpoint('$contact');
-    final response = await apiClient.get(path);
+    final response = await apiClient.post(
+      path,
+      body: jsonEncode(
+        userDTO.toJson(),
+      ),
+    );
     var jsonResult = jsonDecode(response.body);
     return UserDTO.fromJson(jsonResult);
   }
