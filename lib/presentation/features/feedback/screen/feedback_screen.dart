@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:feedback_app/localization/localization.dart';
+
 import '../feedback.dart';
 
 class FeedbackScreen extends StatefulWidget {
@@ -40,9 +42,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     TextField(
                       controller: _name,
                       maxLength: 40,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.lock_open),
-                        labelText: 'Name',
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock_open),
+                        labelText: context.l10n.localeName,
                       ),
                     ),
                     const SizedBox(height: 16.0),
@@ -52,9 +54,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         maxLength: 30,
                         decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.lock_open),
-                            labelText: 'Email',
-                            hintText: 'example@example.com',
-                            errorText: isEmailValid ? null : 'Email is not correctly'),
+                            labelText: context.l10n.emailLabel,
+                            hintText: context.l10n.emailHint,
+                            errorText: isEmailValid ? null : context.l10n.emailError),
                         onChanged: (email) {
                           setState(() {
                             isEmailValid = checkEmailValid(email);
@@ -64,9 +66,9 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     TextField(
                       controller: message,
                       maxLength: 20,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.lock_open),
-                        labelText: 'Password',
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock_open),
+                        labelText: context.l10n.emailLabel,
                       ),
                     ),
                   ],
@@ -92,7 +94,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         ? const CircularProgressIndicator(
                             color: Colors.white,
                           )
-                        : const Text('Send'),
+                        : Text(context.l10n.sendButton),
                   ),
                 ),
               ],
@@ -102,11 +104,11 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       },
       listener: (context, state) {
         if (state.status == FeedbackStateStatus.success) {
-          const snackBar = SnackBar(content: Text('Successful execution'));
+          final snackBar = SnackBar(content: Text(context.l10n.successMessage));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         if (state.status == FeedbackStateStatus.error) {
-          final snackBar = SnackBar(content: Text(state.errorMessage ?? 'Something happen'));
+          final snackBar = SnackBar(content: Text(state.errorMessage ?? context.l10n.errorMessage));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
