@@ -1,0 +1,11 @@
+{
+  "nameLabel": "Name",
+  "emailLabel": "Email",
+  "emailHint": "example@example.com",
+  "emailError": "Email is not correctly",
+  "messageLabel": "Message",
+  "sendButton": "Send",
+  "loadingMessage": "Sending...",
+  "successMessage": "Successful execution",
+  "errorMessage": "Something happened"
+}

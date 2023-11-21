@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 import 'package:feedback_app/app/app.dart';
 
 import '../domain/domain.dart';
+import '../localization/localization.dart';
 
 class Application extends StatelessWidget {
   Application({
@@ -22,6 +23,16 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: _router,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('uk', ''),
+      ],
     );
   }
 
