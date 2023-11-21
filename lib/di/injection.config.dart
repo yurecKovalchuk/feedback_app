@@ -35,8 +35,7 @@ extension GetItInjectableX on _i1.GetIt {
       instanceName: 'baseUrl',
     );
     gh.factory<_i3.UserMapper>(() => _i3.UserMapper());
-    gh.factory<_i4.ApiDatasource>(
-        () => _i4.ApiDatasource(baseUrl: gh<Uri>(instanceName: 'baseUrl')));
+    gh.factory<_i4.ApiDatasource>(() => _i4.ApiDatasource(baseUrl: gh<Uri>(instanceName: 'baseUrl')));
     gh.factory<_i5.FeedbackRepository>(() => _i6.FeedbackRepositoryImpl(
           gh<_i7.ApiDatasource>(),
           gh<_i5.UserMapper>(),
