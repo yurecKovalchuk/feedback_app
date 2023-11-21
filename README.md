@@ -1,16 +1,27 @@
-# feedback_app
+## feedback_app
 
-Contact form for feedback
+Overview
+ContactForm is a mobile application developed using the Flutter/Dart framework. It provides users
+with a contact page featuring a form for sending messages.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Feedback.
 
-A few resources to get you started if this is your first Flutter project:
+# Initially disabled.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Enabled only when all fields are filled and valid.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# User Interaction:
+
+- On click, the Send button switches to "Please Wait" mode.
+- Reverts to the enabled state after receiving a response from the server.
+
+## Project Structure:
+
+The feedback_app follows a structured architecture, organizing code into distinct layers for
+clarity and maintainability. Here's an overview of the primary layers:
+
+- Data Sources.
+- Repository.
+- Presentation Layer.
