@@ -17,9 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FeedbackState {
   FeedbackStateStatus get status => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  UserModel? get userModel => throw _privateConstructorUsedError;
+  NameInput? get nameInput => throw _privateConstructorUsedError;
+  EmailInput? get emailInput => throw _privateConstructorUsedError;
+  MessageInput? get messageInput => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,9 +36,10 @@ abstract class $FeedbackStateCopyWith<$Res> {
   @useResult
   $Res call(
       {FeedbackStateStatus status,
-      String name,
-      String email,
-      String message,
+      UserModel? userModel,
+      NameInput? nameInput,
+      EmailInput? emailInput,
+      MessageInput? messageInput,
       String? errorMessage});
 }
 
@@ -55,9 +57,10 @@ class _$FeedbackStateCopyWithImpl<$Res, $Val extends FeedbackState>
   @override
   $Res call({
     Object? status = null,
-    Object? name = null,
-    Object? email = null,
-    Object? message = null,
+    Object? userModel = freezed,
+    Object? nameInput = freezed,
+    Object? emailInput = freezed,
+    Object? messageInput = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -65,18 +68,22 @@ class _$FeedbackStateCopyWithImpl<$Res, $Val extends FeedbackState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStateStatus,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      userModel: freezed == userModel
+          ? _value.userModel
+          : userModel // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      nameInput: freezed == nameInput
+          ? _value.nameInput
+          : nameInput // ignore: cast_nullable_to_non_nullable
+              as NameInput?,
+      emailInput: freezed == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as EmailInput?,
+      messageInput: freezed == messageInput
+          ? _value.messageInput
+          : messageInput // ignore: cast_nullable_to_non_nullable
+              as MessageInput?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -95,9 +102,10 @@ abstract class _$$FeedbackStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FeedbackStateStatus status,
-      String name,
-      String email,
-      String message,
+      UserModel? userModel,
+      NameInput? nameInput,
+      EmailInput? emailInput,
+      MessageInput? messageInput,
       String? errorMessage});
 }
 
@@ -113,9 +121,10 @@ class __$$FeedbackStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? name = null,
-    Object? email = null,
-    Object? message = null,
+    Object? userModel = freezed,
+    Object? nameInput = freezed,
+    Object? emailInput = freezed,
+    Object? messageInput = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$FeedbackStateImpl(
@@ -123,18 +132,22 @@ class __$$FeedbackStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStateStatus,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      userModel: freezed == userModel
+          ? _value.userModel
+          : userModel // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
+      nameInput: freezed == nameInput
+          ? _value.nameInput
+          : nameInput // ignore: cast_nullable_to_non_nullable
+              as NameInput?,
+      emailInput: freezed == emailInput
+          ? _value.emailInput
+          : emailInput // ignore: cast_nullable_to_non_nullable
+              as EmailInput?,
+      messageInput: freezed == messageInput
+          ? _value.messageInput
+          : messageInput // ignore: cast_nullable_to_non_nullable
+              as MessageInput?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -148,26 +161,29 @@ class __$$FeedbackStateImplCopyWithImpl<$Res>
 class _$FeedbackStateImpl implements _FeedbackState {
   const _$FeedbackStateImpl(
       {this.status = FeedbackStateStatus.initial,
-      required this.name,
-      required this.email,
-      required this.message,
+      this.userModel,
+      this.nameInput,
+      this.emailInput,
+      this.messageInput,
       this.errorMessage});
 
   @override
   @JsonKey()
   final FeedbackStateStatus status;
   @override
-  final String name;
+  final UserModel? userModel;
   @override
-  final String email;
+  final NameInput? nameInput;
   @override
-  final String message;
+  final EmailInput? emailInput;
+  @override
+  final MessageInput? messageInput;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'FeedbackState(status: $status, name: $name, email: $email, message: $message, errorMessage: $errorMessage)';
+    return 'FeedbackState(status: $status, userModel: $userModel, nameInput: $nameInput, emailInput: $emailInput, messageInput: $messageInput, errorMessage: $errorMessage)';
   }
 
   @override
@@ -176,16 +192,21 @@ class _$FeedbackStateImpl implements _FeedbackState {
         (other.runtimeType == runtimeType &&
             other is _$FeedbackStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.userModel, userModel) ||
+                other.userModel == userModel) &&
+            (identical(other.nameInput, nameInput) ||
+                other.nameInput == nameInput) &&
+            (identical(other.emailInput, emailInput) ||
+                other.emailInput == emailInput) &&
+            (identical(other.messageInput, messageInput) ||
+                other.messageInput == messageInput) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, status, name, email, message, errorMessage);
+  int get hashCode => Object.hash(runtimeType, status, userModel, nameInput,
+      emailInput, messageInput, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -197,19 +218,22 @@ class _$FeedbackStateImpl implements _FeedbackState {
 abstract class _FeedbackState implements FeedbackState {
   const factory _FeedbackState(
       {final FeedbackStateStatus status,
-      required final String name,
-      required final String email,
-      required final String message,
+      final UserModel? userModel,
+      final NameInput? nameInput,
+      final EmailInput? emailInput,
+      final MessageInput? messageInput,
       final String? errorMessage}) = _$FeedbackStateImpl;
 
   @override
   FeedbackStateStatus get status;
   @override
-  String get name;
+  UserModel? get userModel;
   @override
-  String get email;
+  NameInput? get nameInput;
   @override
-  String get message;
+  EmailInput? get emailInput;
+  @override
+  MessageInput? get messageInput;
   @override
   String? get errorMessage;
   @override

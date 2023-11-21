@@ -1,3 +1,4 @@
+import 'package:feedback_app/presentation/features/feedback/extension/extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,10 +19,6 @@ class FeedbackScreen extends StatefulWidget {
 class _FeedbackScreenState extends State<FeedbackScreen> {
   FeedbackBloc get _bloc => BlocProvider.of<FeedbackBloc>(context);
 
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController message = TextEditingController();
-
   bool isEmailValid = true;
 
   @override
@@ -32,70 +29,85 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 32),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                Text(
+                  context.l10n.titleLabel,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
                 const SizedBox(
                   height: 48,
                 ),
                 Column(
                   children: [
-                    TextField(
-                      controller: _name,
-                      maxLength: 40,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock_open),
-                        labelText: context.l10n.localeName,
-                      ),
+                    Row(
+                      children: [
+                        const Icon(Icons.lock_open),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: TextField(
+                            maxLength: 40,
+                            decoration: InputDecoration(
+                              labelText: context.l10n.nameLabel,
+                              errorText: state.nameInput?.error?.l10n(context),
+                            ),
+                            onChanged: (value) => _bloc.nameInputChanged(value),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 16.0),
-                    TextField(
-                        controller: _email,
-                        keyboardType: TextInputType.emailAddress,
-                        maxLength: 30,
-                        decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock_open),
-                            labelText: context.l10n.emailLabel,
-                            hintText: context.l10n.emailHint,
-                            errorText: isEmailValid ? null : context.l10n.emailError),
-                        onChanged: (email) {
-                          setState(() {
-                            isEmailValid = checkEmailValid(email);
-                          });
-                        }),
+                    Row(
+                      children: [
+                        const Icon(Icons.lock_open),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: TextField(
+                            keyboardType: TextInputType.emailAddress,
+                            maxLength: 40,
+                            decoration: InputDecoration(
+                              labelText: context.l10n.emailLabel,
+                              hintText: context.l10n.emailHint,
+                              errorText: state.emailInput?.error?.l10n(context),
+                            ),
+                            onChanged: (value) => _bloc.emailInputChanged(value),
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 16.0),
-                    TextField(
-                      controller: message,
-                      maxLength: 20,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock_open),
-                        labelText: context.l10n.emailLabel,
-                      ),
+                    Row(
+                      children: [
+                        const Icon(Icons.lock_open),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: TextField(
+                            maxLength: 40,
+                            decoration: InputDecoration(
+                              labelText: context.l10n.messageLabel,
+                              errorText: state.messageInput?.error?.l10n(context),
+                            ),
+                            onChanged: (value) => _bloc.messageInputChanged(value),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                const Spacer(), // Spacer
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 32,
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () => _bloc.postFeedback(
-                      name: _name.text,
-                      email: _email.text,
-                      message: message.text,
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(72.0),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(46),
-                        )),
-                    child: state.status == FeedbackStateStatus.loading
-                        ? const CircularProgressIndicator(
-                            color: Colors.white,
-                          )
-                        : Text(context.l10n.sendButton),
-                  ),
+                const SizedBox(height: 46), // Spacer
+                ElevatedButton(
+                  onPressed: () => _bloc.postFeedback(),
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(64.0),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(46),
+                      )),
+                  child: state.status == FeedbackStateStatus.loading
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                      : Text(context.l10n.sendButton),
                 ),
               ],
             ),
@@ -104,7 +116,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       },
       listener: (context, state) {
         if (state.status == FeedbackStateStatus.success) {
-          final snackBar = SnackBar(content: Text(context.l10n.successMessage));
+          final snackBar = SnackBar(content: Text(context.l10n.successMessage(state.userModel?.name ?? '')));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
         if (state.status == FeedbackStateStatus.error) {
@@ -113,11 +125,5 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         }
       },
     );
-  }
-
-  bool checkEmailValid(String email) {
-    final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-    final isValid = emailRegex.hasMatch(email);
-    return isValid;
   }
 }
