@@ -17,6 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FeedbackState {
   FeedbackStateStatus get status => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeedbackStateCopyWith<FeedbackState> get copyWith =>
@@ -29,7 +33,12 @@ abstract class $FeedbackStateCopyWith<$Res> {
           FeedbackState value, $Res Function(FeedbackState) then) =
       _$FeedbackStateCopyWithImpl<$Res, FeedbackState>;
   @useResult
-  $Res call({FeedbackStateStatus status});
+  $Res call(
+      {FeedbackStateStatus status,
+      String name,
+      String email,
+      String message,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -46,12 +55,32 @@ class _$FeedbackStateCopyWithImpl<$Res, $Val extends FeedbackState>
   @override
   $Res call({
     Object? status = null,
+    Object? name = null,
+    Object? email = null,
+    Object? message = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStateStatus,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -64,7 +93,12 @@ abstract class _$$FeedbackStateImplCopyWith<$Res>
       __$$FeedbackStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FeedbackStateStatus status});
+  $Res call(
+      {FeedbackStateStatus status,
+      String name,
+      String email,
+      String message,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -79,12 +113,32 @@ class __$$FeedbackStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? name = null,
+    Object? email = null,
+    Object? message = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$FeedbackStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStateStatus,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -92,15 +146,28 @@ class __$$FeedbackStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FeedbackStateImpl implements _FeedbackState {
-  const _$FeedbackStateImpl({this.status = FeedbackStateStatus.initial});
+  const _$FeedbackStateImpl(
+      {this.status = FeedbackStateStatus.initial,
+      required this.name,
+      required this.email,
+      required this.message,
+      this.errorMessage});
 
   @override
   @JsonKey()
   final FeedbackStateStatus status;
+  @override
+  final String name;
+  @override
+  final String email;
+  @override
+  final String message;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'FeedbackState(status: $status)';
+    return 'FeedbackState(status: $status, name: $name, email: $email, message: $message, errorMessage: $errorMessage)';
   }
 
   @override
@@ -108,11 +175,17 @@ class _$FeedbackStateImpl implements _FeedbackState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FeedbackStateImpl &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status);
+  int get hashCode =>
+      Object.hash(runtimeType, status, name, email, message, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +195,23 @@ class _$FeedbackStateImpl implements _FeedbackState {
 }
 
 abstract class _FeedbackState implements FeedbackState {
-  const factory _FeedbackState({final FeedbackStateStatus status}) =
-      _$FeedbackStateImpl;
+  const factory _FeedbackState(
+      {final FeedbackStateStatus status,
+      required final String name,
+      required final String email,
+      required final String message,
+      final String? errorMessage}) = _$FeedbackStateImpl;
 
   @override
   FeedbackStateStatus get status;
+  @override
+  String get name;
+  @override
+  String get email;
+  @override
+  String get message;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$FeedbackStateImplCopyWith<_$FeedbackStateImpl> get copyWith =>
