@@ -33,7 +33,7 @@ class ApiDatasource {
 
   late final apiClient = ApiClient(http.Client(), {});
 
-  get contact => '/test/contact';
+  get contact => '/test/contact/';
 
   Uri _endpoint(String path) => baseUrl.replace(path: baseUrl.path + path);
 
@@ -46,6 +46,10 @@ class ApiDatasource {
       ),
     );
     var jsonResult = jsonDecode(response.body);
-    return UserDTO.fromJson(jsonResult);
+    if (response.statusCode < 300) {
+      return UserDTO.fromJson(jsonResult);
+    } else {
+      throw ErrorResponse.fromJson(jsonResult).generateException();
+    }
   }
 }
