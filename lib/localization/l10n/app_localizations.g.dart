@@ -93,6 +93,12 @@ abstract class AppLocalizations {
     Locale('uk')
   ];
 
+  /// No description provided for @titleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get titleLabel;
+
   /// No description provided for @nameLabel.
   ///
   /// In en, this message translates to:
@@ -138,14 +144,26 @@ abstract class AppLocalizations {
   /// No description provided for @successMessage.
   ///
   /// In en, this message translates to:
-  /// **'Successful execution'**
-  String get successMessage;
+  /// **'Successful execution feedback from {name}'**
+  String successMessage(Object name);
 
   /// No description provided for @errorMessage.
   ///
   /// In en, this message translates to:
   /// **'Something happened'**
   String get errorMessage;
+
+  /// No description provided for @validationBlankError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a value'**
+  String get validationBlankError;
+
+  /// No description provided for @validationEmailError.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get validationEmailError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

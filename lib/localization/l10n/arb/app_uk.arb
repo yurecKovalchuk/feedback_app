@@ -1,11 +1,14 @@
 {
-  "nameLabel": "Name",
-  "emailLabel": "Email",
-  "emailHint": "example@example.com",
-  "emailError": "Email is not correctly",
-  "messageLabel": "Message",
-  "sendButton": "Send",
-  "loadingMessage": "Sending...",
-  "successMessage": "Successful execution",
-  "errorMessage": "Something happened"
+  "titleLabel": "Зв'яжіться з нами",
+  "nameLabel": "Ім'я",
+  "emailLabel": "Електронна пошта",
+  "emailHint": "приклад@example.com",
+  "emailError": "Електронна пошта введена невірно",
+  "messageLabel": "Повідомлення",
+  "sendButton": "Надіслати",
+  "loadingMessage": "Надсилання...",
+  "successMessage": "Успішно виконаний відбек для {name}",
+  "errorMessage": "Сталася помилка",
+  "validationBlankError": "Будь ласка, введіть значення",
+  "validationEmailError": "Будь ласка, введіть правильну електронну пошту"
 }

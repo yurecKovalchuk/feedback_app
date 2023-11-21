@@ -5,6 +5,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get titleLabel => 'Contact Us';
+
+  @override
   String get nameLabel => 'Name';
 
   @override
@@ -26,8 +29,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loadingMessage => 'Sending...';
 
   @override
-  String get successMessage => 'Successful execution';
+  String successMessage(Object name) {
+    return 'Successful execution feedback from $name';
+  }
 
   @override
   String get errorMessage => 'Something happened';
+
+  @override
+  String get validationBlankError => 'Please enter a value';
+
+  @override
+  String get validationEmailError => 'Please enter a valid email';
 }

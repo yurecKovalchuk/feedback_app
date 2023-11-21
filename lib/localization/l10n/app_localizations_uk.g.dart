@@ -5,29 +5,40 @@ class AppLocalizationsUk extends AppLocalizations {
   AppLocalizationsUk([String locale = 'uk']) : super(locale);
 
   @override
-  String get nameLabel => 'Name';
+  String get titleLabel => 'Зв\'яжіться з нами';
 
   @override
-  String get emailLabel => 'Email';
+  String get nameLabel => 'Ім\'я';
 
   @override
-  String get emailHint => 'example@example.com';
+  String get emailLabel => 'Електронна пошта';
 
   @override
-  String get emailError => 'Email is not correctly';
+  String get emailHint => 'приклад@example.com';
 
   @override
-  String get messageLabel => 'Message';
+  String get emailError => 'Електронна пошта введена невірно';
 
   @override
-  String get sendButton => 'Send';
+  String get messageLabel => 'Повідомлення';
 
   @override
-  String get loadingMessage => 'Sending...';
+  String get sendButton => 'Надіслати';
 
   @override
-  String get successMessage => 'Successful execution';
+  String get loadingMessage => 'Надсилання...';
 
   @override
-  String get errorMessage => 'Something happened';
+  String successMessage(Object name) {
+    return 'Успішно виконаний відбек для $name';
+  }
+
+  @override
+  String get errorMessage => 'Сталася помилка';
+
+  @override
+  String get validationBlankError => 'Будь ласка, введіть значення';
+
+  @override
+  String get validationEmailError => 'Будь ласка, введіть правильну електронну пошту';
 }
